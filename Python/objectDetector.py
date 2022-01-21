@@ -19,8 +19,7 @@ class ShapeDetector:
         print("Peri in Shape Detector", peri) # Value used in the First principles RDP
         approx = cv2.approxPolyDP(c, 0.04 * peri, True)
         cs = []
-        # if the shape has 4 vertices, it is either a square or
-        # a rectangle
+        # if the shape has 4 vertices, it is either a square or a rectangle
         if len(approx) == 4:
             # compute the bounding box of the contour and use the
             # bounding box to compute the aspect ratio

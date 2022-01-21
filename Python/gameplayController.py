@@ -49,12 +49,14 @@ def paddleMovement(xCoords, yCoords,
             print(image)
 
         # cv2.imshow(np.array(image))
+        # https://docs.opencv.org/4.x/d4/d73/tutorial_py_contours_begin.html
         cnts = cv2.findContours(frame.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
         if DEBUGGING == 1:
             print("Finding contours in image (cnts)")
             print(cnts)
 
+        # Just grabs the first image
         cnts = imutils.grab_contours(cnts)
 
         # loop over the contours
