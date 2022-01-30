@@ -64,6 +64,7 @@ if chooseStream == 0:
     cap = cv2.VideoCapture(0)
     streamVar = cap.isOpened()
 elif chooseStream == 1:
+    print("In the video")
     cap = cv2.VideoCapture('PONGTest1.mp4')
     streamVar = cap.isOpened()
 elif chooseStream == 2:
@@ -75,7 +76,6 @@ elif chooseStream == 3:
 
 while streamVar:
 
-# while True:
     if  TIME_DEBUGGING == 1:
         start_time = time.time()
     
@@ -111,7 +111,7 @@ while streamVar:
         gray = cv2.GaussianBlur(gray, (3,3), 0)
         
     if firstPrincipleImp:
-        # Exact results as OpenCV
+        # Almost Exact results as OpenCV, rounding error due to int
         gray = cvtColour(frame)
         gray = GaussianBlur(gray, (3,3), -1)
         
@@ -173,7 +173,8 @@ while streamVar:
         if firstPrincipleImp:
             prevX = circles[0][0]
             prevY = circles[0][1]
-            print("Length of circles", len(circles))
+            if DEBUGGING == 1:
+                print("Length of circles", len(circles))
             if len(circles)==1: # Means that only one circle was detected
                 boolNumOfCircles = True
                 circularOutput = circles
@@ -181,7 +182,8 @@ while streamVar:
 
         if boolNumOfCircles == True:
             for i in circularOutput:
-                print("Coordinates of the centre of the ball:", i)
+                if DEBUGGING == 1:
+                    print("Coordinates of the centre of the ball:", i)
                 # draw the outer circle
                 # cv2.circle(frame,(i[0],i[1]),i[2],(0,255,0),2)
                 # draw the center of the circle
@@ -190,8 +192,9 @@ while streamVar:
                 # These are the coordinates from the circle, the processing should be based off of this
                 ballX.insert(0, i[0])
                 ballY.insert(0, i[1])
-                print("Ball X",ballX)
-                print("Ball Y",ballY)
+                if DEBUGGING == 1:
+                    print("Ball X",ballX)
+                    print("Ball Y",ballY)
                 paddlePosX, paddlePosY, u_in = paddleMovement( xCoords = ballX,
                                                                yCoords = ballY,
                                                                xPaddle = paddlePosX,

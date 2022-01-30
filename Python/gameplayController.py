@@ -73,9 +73,10 @@ def paddleMovement(xCoords, yCoords,
                     # Catch Condition to prevent zero division error
                     cX = 0
                     cY = 0
-                print("CV2 moments x",cX)
-                print("CV2 moments y",cY)
-             
+                if DEBUGGING == 1:
+                    print("CV2 moments x",cX)
+                    print("CV2 moments y",cY)
+                
             if firstPrincipleImp:
                 # --- The paddle detecting algorithm is not very good
                 # c = paddleDetectors(frame)
@@ -194,7 +195,8 @@ def paddleMovement(xCoords, yCoords,
     #           Using first principles Only to determine the position of the paddle
     # --------------------------------------------------------------------------------------------------- #
     if (method==2):
-        print("Gameplay Controller Method 2")
+        if DEBUGGING == 1:
+            print("Gameplay Controller Method 2")
         # Catch condition for return variables
         btest = True
 

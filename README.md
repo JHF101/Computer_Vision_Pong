@@ -29,7 +29,9 @@ The noise in the image has been suppressed, so now the Hough Circles algorithm [
 The first principles implementation was extremely slow in Python, so a solution to that problem was decreasing the area that was analysed for the ball. This was done by creating a windowing method that would first perform the Hough Circles algorithm on the entire picture and determine where the ball is in the playing field. Then a much smaller window would be scanned for the ball, creating a window that would essentially follow the ball. This method did reduce the time it took for the algorithm to be completed, but it does assume that the ball will not be moving fast enough to escape the window.
 <!-- Add images of the window -->
 
-The paddle detection was performed by performing Binary Thresholding on the image as preparation for the Suzuki85 Algorithm.
+The paddle detection was performed by performing Binary Thresholding on the image as preparation for the Suzuki85 Algorithm. The Suzuki Algorithm would then be used to detect the contours. The contours can then be analysed by the moments algorithm to detect the the centroid of the shape. This process can be used to detect the center of the ball and the paddles. However this method assumes that only the two paddles and the ball are in the image.
+
+A similar approach can be used with Connected-Component Labelling and this is actually demonstrated in CCLOpenCV.
 
 
 

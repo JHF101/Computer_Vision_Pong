@@ -1,6 +1,7 @@
 import keyboard
 import time
-from typing import List 
+from typing import List
+from Python.globalVars import DEBUGGING 
 from popUpMessage import popupmsg
 
 # TODO: Can add a damping parameter onto the on off controller
@@ -23,11 +24,14 @@ class keyBoardController:
         if (self.xBall[1] > self.xBall[0]):
             if (self.yBall[1] > self.yBall[0]):
                 keyboard.press_and_release("w")
-                print("w")
+                if DEBUGGING == 1:
+                    print("w")
             if self.yBall[1] < self.yBall[0]:
                 keyboard.press_and_release("s")
-                print("s")   
-            print(self.yPaddlePos[0])
+                if DEBUGGING == 1:
+                    print("s")   
+            if DEBUGGING == 1:
+                print(self.yPaddlePos[0])
             
     def relativeSimplistic(self):    
         """
@@ -58,13 +62,15 @@ class keyBoardController:
                 keyboard.release('s')
 
             else:
-                print("Wait")
+                if DEBUGGING == 1:
+                    print("Wait")
                 keyPushedLeft = "x"
-
-            print("LHS Paddle Position: ",self.yPaddlePos[0])
-            print("LHS Ball Position: ",self.yBall[0])
+            if DEBUGGING == 1:
+                print("LHS Paddle Position: ",self.yPaddlePos[0])
+                print("LHS Ball Position: ",self.yBall[0])
         else:
-            print("LHS Stationary")
+            if DEBUGGING == 1:
+                print("LHS Stationary")
 
         # ===================================================== #
         # Right hand Side
@@ -84,13 +90,16 @@ class keyBoardController:
                 keyboard.release('g')
 
             else:
-                print("Wait")
+                if DEBUGGING == 1:
+                    print("Wait")
                 keyPushedRight = "x"
 
-            print("RHS Paddle Position: ",self.yPaddlePos[0])
-            print("RHS Ball Position: ",self.yBall[0])
+            if DEBUGGING == 1:
+                print("RHS Paddle Position: ",self.yPaddlePos[0])
+                print("RHS Ball Position: ",self.yBall[0])
         else:
-            print("RHS Stationary")
+            if DEBUGGING == 1:
+                print("RHS Stationary")
                 
         return [1,1,1],(keyPushedLeft, keyPushedRight)
     
@@ -133,8 +142,9 @@ class keyBoardController:
             for i in range(3):
                 e.append(self.yBall[i] - self.yPaddlePos[i])
 
-            print("e",e)
-            print("u",u)
+            if DEBUGGING == 1:
+                print("e",e)
+                print("u",u)
             # insert u as the zero-eth control action
             
             # -------------------- Position form of PID -------------------- #
